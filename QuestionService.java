@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class QuestionService {
         
     Question[] questions=new Question[5];
+    String selection[] =new String [5];
 
     public QuestionService() {
         questions[0]=new Question(1,"What is the capital of India?","Mumbai","Delhi","Kolkata","Chennai","Delhi");
@@ -13,7 +14,7 @@ public class QuestionService {
     }
 
     public void playQuiz(){
-        int score=0;
+        
         for(int i=0;i<5;i++){
             System.out.println(questions[i].getQuestion());
             System.out.println("A. "+questions[i].getOpt1());
@@ -22,14 +23,23 @@ public class QuestionService {
             System.out.println("D. "+questions[i].getOpt4());
             System.out.println("Enter your answer");
             Scanner sc=new Scanner(System.in);
-            String ans=sc.next();
-            if(ans.equals(questions[i].getAnswer())){
-                score++;
-            }
-        }
-        System.out.println("Your score is "+score);
-
+            selection[i]=sc.nextLine();
+          
+        }    
     }
 
+    public void showScore(){
+        int score=0;
+        for(int i=0;i<5;i++){
+            String quest=questions[i].getQuestion();
+            String ans=questions[i].getAnswer();
+            String sel=selection[i];
+            if(ans.equals(sel)){
+                score++;
+            }
 
+        }
+
+        System.out.println("Final score "+ score);
+    }
 }
